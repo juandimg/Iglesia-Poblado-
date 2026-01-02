@@ -1,0 +1,38 @@
+# Ignorar carpetas de build
+build/
+cmake-build-*/
+out/
+
+# Ignorar archivos de Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vcxproj
+*.vcxproj.filters
+*.sln
+
+# Ignorar archivos de compilación
+*.exe
+*.dll
+*.lib
+*.obj
+*.o
+*.a
+*.so
+
+# Ignorar archivos de CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Ignorar archivos temporales
+*.log
+*.tmp
+*~
+
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
