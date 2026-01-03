@@ -28,7 +28,7 @@ function Show-LoginForm {
 
     # Título
     $lblTitle = New-Object System.Windows.Forms.Label
-    $lblTitle.Text = "🔐 IGLESIA POBLADO"
+    $lblTitle.Text = "TIENDA IGLESIA POBLADO"
     $lblTitle.Font = New-Object System.Drawing.Font("Segoe UI Emoji", 16, [System.Drawing.FontStyle]::Bold)
     $lblTitle.ForeColor = [System.Drawing.Color]::White
     $lblTitle.AutoSize = $false
@@ -63,8 +63,8 @@ function Show-LoginForm {
     $txtPassword = New-Object System.Windows.Forms.TextBox
     $txtPassword.Location = New-Object System.Drawing.Point(50, 180)
     $txtPassword.Size = New-Object System.Drawing.Size(300, 25)
-    $txtPassword.Font = New-Object System.Drawing.Font("Arial", 11)
-    $txtPassword.PasswordChar = "●"
+    $txtPassword.Font = New-Object System.Drawing.Font("Arial", 12)
+    $txtPassword.PasswordChar = "*"
     $loginForm.Controls.Add($txtPassword)
 
     # Botón de Iniciar Sesión
@@ -126,6 +126,275 @@ function Show-LoginForm {
     # Mostrar el formulario de login
     $loginForm.ShowDialog() | Out-Null
     return $loginForm.Tag
+}
+
+# Función para mostrar la gestión de créditos
+function Show-CreditosForm {
+    $formCreditos = New-Object System.Windows.Forms.Form
+    $formCreditos.Text = " Detalle de Créditos - Iglesia Poblado"
+    $formCreditos.ClientSize = New-Object System.Drawing.Size(950, 650)
+    $formCreditos.StartPosition = "CenterScreen"
+    $formCreditos.BackColor = [System.Drawing.Color]::FromArgb(245, 245, 245)
+    $formCreditos.FormBorderStyle = "Sizable"
+    $formCreditos.MinimumSize = New-Object System.Drawing.Size(900, 600)
+
+
+
+    # Panel superior
+    $panelTopCred = New-Object System.Windows.Forms.Panel
+    $panelTopCred.BackColor = [System.Drawing.Color]::FromArgb(0, 120, 215)
+    $panelTopCred.Dock = "Top"
+    $panelTopCred.Height = 70
+    $formCreditos.Controls.Add($panelTopCred)
+
+    # Título
+    $lblTituloCred = New-Object System.Windows.Forms.Label
+    $lblTituloCred.Text = " DETALLE DE CRÉDITOS"
+    $lblTituloCred.Font = New-Object System.Drawing.Font("Segoe UI Emoji", 18, [System.Drawing.FontStyle]::Bold)
+    $lblTituloCred.ForeColor = [System.Drawing.Color]::White
+    $lblTituloCred.AutoSize = $false
+    $lblTituloCred.Size = New-Object System.Drawing.Size(600, 70)
+    $lblTituloCred.Location = New-Object System.Drawing.Point(20, 0)
+    $lblTituloCred.TextAlign = "MiddleLeft"
+    $panelTopCred.Controls.Add($lblTituloCred)
+
+    # Botón cerrar
+    $btnCerrarCred = New-Object System.Windows.Forms.Button
+    $btnCerrarCred.Text = "✖ Cerrar"
+    $btnCerrarCred.Size = New-Object System.Drawing.Size(100, 35)
+    $btnCerrarCred.Location = New-Object System.Drawing.Point(830, 17)
+    $btnCerrarCred.Font = New-Object System.Drawing.Font("Arial", 9, [System.Drawing.FontStyle]::Bold)
+    $btnCerrarCred.BackColor = [System.Drawing.Color]::FromArgb(220, 53, 69)
+    $btnCerrarCred.ForeColor = [System.Drawing.Color]::White
+    $btnCerrarCred.FlatStyle = "Flat"
+    $btnCerrarCred.Cursor = [System.Windows.Forms.Cursors]::Hand
+    $panelTopCred.Controls.Add($btnCerrarCred)
+
+  
+    # GroupBox Nueva Transacción
+    $groupTransaccion = New-Object System.Windows.Forms.GroupBox
+    $groupTransaccion.Text = "Nueva Transacción"
+    $groupTransaccion.Location = New-Object System.Drawing.Point(20, 190)
+    $groupTransaccion.Size = New-Object System.Drawing.Size(910, 140)
+    $groupTransaccion.Font = New-Object System.Drawing.Font("Arial", 11, [System.Drawing.FontStyle]::Bold)
+    $formCreditos.Controls.Add($groupTransaccion)
+
+    # Tipo
+    $lblTipo = New-Object System.Windows.Forms.Label
+    $lblTipo.Text = "Tipo:"
+    $lblTipo.Location = New-Object System.Drawing.Point(20, 30)
+    $lblTipo.Size = New-Object System.Drawing.Size(80, 20)
+    $lblTipo.Font = New-Object System.Drawing.Font("Arial", 10)
+    $groupTransaccion.Controls.Add($lblTipo)
+
+    $cmbTipo = New-Object System.Windows.Forms.ComboBox
+    $cmbTipo.Location = New-Object System.Drawing.Point(20, 55)
+    $cmbTipo.Size = New-Object System.Drawing.Size(150, 25)
+    $cmbTipo.Font = New-Object System.Drawing.Font("Arial", 10)
+    $cmbTipo.DropDownStyle = "DropDownList"
+    $cmbTipo.Items.AddRange(@("Ingreso", "Retiro"))
+    $cmbTipo.SelectedIndex = 0
+    $groupTransaccion.Controls.Add($cmbTipo)
+
+    # Monto
+    $lblMonto = New-Object System.Windows.Forms.Label
+    $lblMonto.Text = "Monto:"
+    $lblMonto.Location = New-Object System.Drawing.Point(190, 30)
+    $lblMonto.Size = New-Object System.Drawing.Size(80, 20)
+    $lblMonto.Font = New-Object System.Drawing.Font("Arial", 10)
+    $groupTransaccion.Controls.Add($lblMonto)
+
+    $txtMonto = New-Object System.Windows.Forms.TextBox
+    $txtMonto.Location = New-Object System.Drawing.Point(190, 55)
+    $txtMonto.Size = New-Object System.Drawing.Size(150, 25)
+    $txtMonto.Font = New-Object System.Drawing.Font("Arial", 10)
+    $groupTransaccion.Controls.Add($txtMonto)
+
+    # Descripción
+    $lblDescripcion = New-Object System.Windows.Forms.Label
+    $lblDescripcion.Text = "Descripción:"
+    $lblDescripcion.Location = New-Object System.Drawing.Point(360, 30)
+    $lblDescripcion.Size = New-Object System.Drawing.Size(100, 20)
+    $lblDescripcion.Font = New-Object System.Drawing.Font("Arial", 10)
+    $groupTransaccion.Controls.Add($lblDescripcion)
+
+    $txtDescripcion = New-Object System.Windows.Forms.TextBox
+    $txtDescripcion.Location = New-Object System.Drawing.Point(360, 55)
+    $txtDescripcion.Size = New-Object System.Drawing.Size(300, 25)
+    $txtDescripcion.Font = New-Object System.Drawing.Font("Arial", 10)
+    $groupTransaccion.Controls.Add($txtDescripcion)
+
+    # Botones
+    $btnAgregarTrans = New-Object System.Windows.Forms.Button
+    $btnAgregarTrans.Text = "➕ Agregar"
+    $btnAgregarTrans.Location = New-Object System.Drawing.Point(20, 95)
+    $btnAgregarTrans.Size = New-Object System.Drawing.Size(130, 35)
+    $btnAgregarTrans.BackColor = [System.Drawing.Color]::FromArgb(40, 167, 69)
+    $btnAgregarTrans.ForeColor = [System.Drawing.Color]::White
+    $btnAgregarTrans.FlatStyle = "Flat"
+    $btnAgregarTrans.Cursor = [System.Windows.Forms.Cursors]::Hand
+    $groupTransaccion.Controls.Add($btnAgregarTrans)
+
+    $btnEliminarTrans = New-Object System.Windows.Forms.Button
+    $btnEliminarTrans.Text = "🗑️ Eliminar"
+    $btnEliminarTrans.Location = New-Object System.Drawing.Point(160, 95)
+    $btnEliminarTrans.Size = New-Object System.Drawing.Size(130, 35)
+    $btnEliminarTrans.BackColor = [System.Drawing.Color]::FromArgb(220, 53, 69)
+    $btnEliminarTrans.ForeColor = [System.Drawing.Color]::White
+    $btnEliminarTrans.FlatStyle = "Flat"
+    $btnEliminarTrans.Cursor = [System.Windows.Forms.Cursors]::Hand
+    $groupTransaccion.Controls.Add($btnEliminarTrans)
+
+    $btnLimpiarTrans = New-Object System.Windows.Forms.Button
+    $btnLimpiarTrans.Text = "🔄 Limpiar"
+    $btnLimpiarTrans.Location = New-Object System.Drawing.Point(300, 95)
+    $btnLimpiarTrans.Size = New-Object System.Drawing.Size(130, 35)
+    $btnLimpiarTrans.BackColor = [System.Drawing.Color]::FromArgb(108, 117, 125)
+    $btnLimpiarTrans.ForeColor = [System.Drawing.Color]::White
+    $btnLimpiarTrans.FlatStyle = "Flat"
+    $btnLimpiarTrans.Cursor = [System.Windows.Forms.Cursors]::Hand
+    $groupTransaccion.Controls.Add($btnLimpiarTrans)
+
+    # DataGridView para transacciones
+    $dgvTransacciones = New-Object System.Windows.Forms.DataGridView
+    $dgvTransacciones.Location = New-Object System.Drawing.Point(20, 350)
+    $dgvTransacciones.Size = New-Object System.Drawing.Size(910, 270)
+    $dgvTransacciones.AllowUserToAddRows = $false
+    $dgvTransacciones.ReadOnly = $true
+    $dgvTransacciones.SelectionMode = "FullRowSelect"
+    $dgvTransacciones.BackgroundColor = [System.Drawing.Color]::White
+    $dgvTransacciones.BorderStyle = "Fixed3D"
+    $dgvTransacciones.RowHeadersVisible = $false
+    $dgvTransacciones.AutoSizeColumnsMode = "Fill"
+    $formCreditos.Controls.Add($dgvTransacciones)
+
+    # Columnas del DataGridView
+    $colId = New-Object System.Windows.Forms.DataGridViewTextBoxColumn
+    $colId.Name = "ID"
+    $colId.HeaderText = "ID"
+    $colId.Width = 50
+    $dgvTransacciones.Columns.Add($colId)
+
+    $colTipo = New-Object System.Windows.Forms.DataGridViewTextBoxColumn
+    $colTipo.Name = "Tipo"
+    $colTipo.HeaderText = "Tipo"
+    $colTipo.Width = 100
+    $dgvTransacciones.Columns.Add($colTipo)
+
+    $colMonto = New-Object System.Windows.Forms.DataGridViewTextBoxColumn
+    $colMonto.Name = "Monto"
+    $colMonto.HeaderText = "Monto"
+    $colMonto.Width = 120
+    $dgvTransacciones.Columns.Add($colMonto)
+
+    $colDesc = New-Object System.Windows.Forms.DataGridViewTextBoxColumn
+    $colDesc.Name = "Descripcion"
+    $colDesc.HeaderText = "Descripción"
+    $colDesc.Width = 400
+    $dgvTransacciones.Columns.Add($colDesc)
+
+    $colFecha = New-Object System.Windows.Forms.DataGridViewTextBoxColumn
+    $colFecha.Name = "Fecha"
+    $colFecha.HeaderText = "Fecha"
+    $colFecha.Width = 190
+    $dgvTransacciones.Columns.Add($colFecha)
+
+    # Agregar transacciones iniciales
+    $dgvTransacciones.Rows.Add(1, "Ingreso", "$150,000", "Saldo inicial", "01/01/2026 08:00")
+    $dgvTransacciones.Rows.Add(2, "Ingreso", "$50,000", "Venta de productos", "02/01/2026 10:30")
+    $dgvTransacciones.Rows.Add(3, "Retiro", "$20,000", "Compra de inventario", "02/01/2026 15:45")
+
+    # Función para actualizar saldo
+    function Actualizar-Saldo {
+        $lblSaldoValor.Text = "`${0:N0}" -f $script:saldoActual
+    }
+
+    # Evento agregar transacción
+    $btnAgregarTrans.Add_Click({
+        if ([string]::IsNullOrWhiteSpace($txtMonto.Text)) {
+            [System.Windows.Forms.MessageBox]::Show("Por favor ingrese el monto", "Campo requerido", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Warning)
+            return
+        }
+
+        $monto = [int]$txtMonto.Text
+        $tipo = $cmbTipo.SelectedItem
+        $desc = if ([string]::IsNullOrWhiteSpace($txtDescripcion.Text)) { "Sin descripción" } else { $txtDescripcion.Text }
+        $fecha = Get-Date -Format "dd/MM/yyyy HH:mm"
+
+        if ($tipo -eq "Ingreso") {
+            $script:saldoActual += $monto
+        } else {
+            if ($monto -gt $script:saldoActual) {
+                [System.Windows.Forms.MessageBox]::Show("Saldo insuficiente para realizar el retiro", "Error", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+                return
+            }
+            $script:saldoActual -= $monto
+        }
+
+        $dgvTransacciones.Rows.Add($script:transaccionId, $tipo, "`${0:N0}" -f $monto, $desc, $fecha)
+        $script:transaccionId++
+        
+        Actualizar-Saldo
+        
+        [System.Windows.Forms.MessageBox]::Show("Transacción agregada exitosamente", "Éxito", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+        
+        $txtMonto.Clear()
+        $txtDescripcion.Clear()
+        $cmbTipo.SelectedIndex = 0
+    })
+
+    # Evento eliminar transacción
+    $btnEliminarTrans.Add_Click({
+        if ($dgvTransacciones.SelectedRows.Count -eq 0) {
+            [System.Windows.Forms.MessageBox]::Show("Por favor seleccione una transacción para eliminar", "Selección requerida", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Warning)
+            return
+        }
+
+        $resultado = [System.Windows.Forms.MessageBox]::Show("¿Está seguro de eliminar esta transacción?`n`nEsto revertirá el monto al saldo.", "Confirmar eliminación", [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Question)
+
+        if ($resultado -eq "Yes") {
+            $fila = $dgvTransacciones.SelectedRows[0]
+            $tipo = $fila.Cells["Tipo"].Value
+            $montoStr = $fila.Cells["Monto"].Value -replace '[\$,]', ''
+            $monto = [int]$montoStr
+
+            if ($tipo -eq "Ingreso") {
+                $script:saldoActual -= $monto
+            } else {
+                $script:saldoActual += $monto
+            }
+
+            $dgvTransacciones.Rows.Remove($fila)
+            Actualizar-Saldo
+
+            [System.Windows.Forms.MessageBox]::Show("Transacción eliminada exitosamente", "Éxito", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+        }
+    })
+
+    # Evento limpiar
+    $btnLimpiarTrans.Add_Click({
+        $txtMonto.Clear()
+        $txtDescripcion.Clear()
+        $cmbTipo.SelectedIndex = 0
+    })
+
+    # Evento cerrar
+    $btnCerrarCred.Add_Click({
+        $formCreditos.Close()
+    })
+
+    # Evento de selección en el grid
+    $dgvTransacciones.Add_SelectionChanged({
+        if ($dgvTransacciones.SelectedRows.Count -gt 0) {
+            $fila = $dgvTransacciones.SelectedRows[0]
+            $cmbTipo.SelectedItem = $fila.Cells["Tipo"].Value
+            $montoStr = $fila.Cells["Monto"].Value -replace '[\$,]', ''
+            $txtMonto.Text = $montoStr
+            $txtDescripcion.Text = $fila.Cells["Descripcion"].Value
+        }
+    })
+
+    $formCreditos.ShowDialog() | Out-Null
 }
 
 # Función para mostrar la ventana de inventario
@@ -530,21 +799,41 @@ function Show-MainApp {
         $btnMostrarPanel.Visible = $false
     })
 
- 
+    # GroupBox para Créditos (similar al del inventario)
+    $groupBoxCreditos = New-Object System.Windows.Forms.GroupBox
+    $groupBoxCreditos.Text = "💳 Gestión de Créditos"
+    $groupBoxCreditos.Location = New-Object System.Drawing.Point(10, 70)
+    $groupBoxCreditos.Size = New-Object System.Drawing.Size(230, 120)
+    $groupBoxCreditos.Font = New-Object System.Drawing.Font("Arial", 10, [System.Drawing.FontStyle]::Bold)
+    $groupBoxCreditos.ForeColor = [System.Drawing.Color]::Gold
+    $panelLateral.Controls.Add($groupBoxCreditos)
 
-    # Categorías
-    $lblCategorias = New-Object System.Windows.Forms.Label
+    # CAMPO DE CRÉDITOS - Etiqueta
+    $lblCreditosTitulo = New-Object System.Windows.Forms.Label
+    $lblCreditosTitulo.Text = "Créditos Disponibles:"
+    $lblCreditosTitulo.Font = New-Object System.Drawing.Font("Arial", 9)
+    $lblCreditosTitulo.ForeColor = [System.Drawing.Color]::White
+    $lblCreditosTitulo.AutoSize = $false
+    $lblCreditosTitulo.Size = New-Object System.Drawing.Size(210, 20)
+    $lblCreditosTitulo.Location = New-Object System.Drawing.Point(10, 30)
+    $lblCreditosTitulo.TextAlign = "TopLeft"
+    $groupBoxCreditos.Controls.Add($lblCreditosTitulo)
 
-    $lblCategorias.Font = New-Object System.Drawing.Font("Segoe UI Emoji", 10)
-    $lblCategorias.ForeColor = [System.Drawing.Color]::LightGray
-    $lblCategorias.Location = New-Object System.Drawing.Point(20, 210)
-    $lblCategorias.Size = New-Object System.Drawing.Size(210, 120)
-    $panelLateral.Controls.Add($lblCategorias)
+    # CAMPO DE CRÉDITOS - Cuadro de texto
+    $txtCreditos = New-Object System.Windows.Forms.TextBox
+    $txtCreditos.Location = New-Object System.Drawing.Point(10, 55)
+    $txtCreditos.Size = New-Object System.Drawing.Size(210, 30)
+    $txtCreditos.Font = New-Object System.Drawing.Font("Arial", 14, [System.Drawing.FontStyle]::Bold)
+    $txtCreditos.Text = "150000"
+    $txtCreditos.TextAlign = "Center"
+    $txtCreditos.BackColor = [System.Drawing.Color]::White
+    $txtCreditos.ForeColor = [System.Drawing.Color]::DarkGreen
+    $groupBoxCreditos.Controls.Add($txtCreditos)
 
     # Botón Ir a Inventario
     $btnIrInventario = New-Object System.Windows.Forms.Button
     $btnIrInventario.Text = "📦 Ir a Inventario"
-    $btnIrInventario.Location = New-Object System.Drawing.Point(30, 350)
+    $btnIrInventario.Location = New-Object System.Drawing.Point(30, 210)
     $btnIrInventario.Size = New-Object System.Drawing.Size(190, 40)
     $btnIrInventario.Font = New-Object System.Drawing.Font("Arial", 9, [System.Drawing.FontStyle]::Bold)
     $btnIrInventario.BackColor = [System.Drawing.Color]::FromArgb(0, 120, 215)
@@ -553,10 +842,10 @@ function Show-MainApp {
     $btnIrInventario.Cursor = [System.Windows.Forms.Cursors]::Hand
     $panelLateral.Controls.Add($btnIrInventario)
 
-    # Botón de actualizar estadísticas
+    # Botón de actualizar créditos
     $btnActualizar = New-Object System.Windows.Forms.Button
-    $btnActualizar.Text = "🔄 Actualizar Stats"
-    $btnActualizar.Location = New-Object System.Drawing.Point(30, 500)
+    $btnActualizar.Text = "🔄 Actualizar Créditos"
+    $btnActualizar.Location = New-Object System.Drawing.Point(30, 270)
     $btnActualizar.Size = New-Object System.Drawing.Size(190, 40)
     $btnActualizar.Font = New-Object System.Drawing.Font("Arial", 9)
     $btnActualizar.BackColor = [System.Drawing.Color]::FromArgb(40, 167, 69)
@@ -565,12 +854,9 @@ function Show-MainApp {
     $btnActualizar.Cursor = [System.Windows.Forms.Cursors]::Hand
     $panelLateral.Controls.Add($btnActualizar)
 
-    # Evento actualizar estadísticas
+    # Evento actualizar créditos - Abrir ventana de créditos
     $btnActualizar.Add_Click({
-        $script:contadorVisitas += Get-Random -Minimum 1 -Maximum 50
-        $script:productosVendidos += Get-Random -Minimum 1 -Maximum 10
-        $lblVisitas.Text = "👥 Visitas Hoy:`n$script:contadorVisitas"
-        $lblVendidos.Text = "🛍️ Productos Vendidos:`n$script:productosVendidos"
+        Show-CreditosForm
     })
 
     # Panel central principal
@@ -847,6 +1133,58 @@ function Show-MainApp {
     # Evento botón inventario
     $btnIrInventario.Add_Click({
         Show-InventarioForm -usuarioActual $usuarioActual
+    })
+
+    # FOOTER CON SOPORTE
+    $panelFooter = New-Object System.Windows.Forms.Panel
+    $panelFooter.BackColor = [System.Drawing.Color]::FromArgb(52, 58, 64)
+    $panelFooter.Dock = "Bottom"
+    $panelFooter.Height = 50
+    $form.Controls.Add($panelFooter)
+    $panelFooter.BringToFront()
+
+    # Información de soporte
+    $lblSoporte = New-Object System.Windows.Forms.Label
+    $lblSoporte.Text = "📞 Soporte: juandsoftware@gmail.com | Tel: 350 567 4554"
+    $lblSoporte.Font = New-Object System.Drawing.Font("Arial", 10)
+    $lblSoporte.ForeColor = [System.Drawing.Color]::White
+    $lblSoporte.AutoSize = $false
+    $lblSoporte.Size = New-Object System.Drawing.Size(600, 50)
+    $lblSoporte.Location = New-Object System.Drawing.Point(20, 0)
+    $lblSoporte.TextAlign = "MiddleLeft"
+    $panelFooter.Controls.Add($lblSoporte)
+
+    # Botón de ayuda
+    $btnAyuda = New-Object System.Windows.Forms.Button
+    $btnAyuda.Text = "❓ Ayuda"
+    $btnAyuda.Size = New-Object System.Drawing.Size(100, 35)
+    $btnAyuda.Location = New-Object System.Drawing.Point(650, 8)
+    $btnAyuda.Font = New-Object System.Drawing.Font("Arial", 9, [System.Drawing.FontStyle]::Bold)
+    $btnAyuda.BackColor = [System.Drawing.Color]::FromArgb(0, 120, 215)
+    $btnAyuda.ForeColor = [System.Drawing.Color]::White
+    $btnAyuda.FlatStyle = "Flat"
+    $btnAyuda.Cursor = [System.Windows.Forms.Cursors]::Hand
+    $panelFooter.Controls.Add($btnAyuda)
+
+    # Copyright
+    $lblCopyright = New-Object System.Windows.Forms.Label
+    $lblCopyright.Text = "© 2026 Iglesia Poblado"
+    $lblCopyright.Font = New-Object System.Drawing.Font("Arial", 9)
+    $lblCopyright.ForeColor = [System.Drawing.Color]::LightGray
+    $lblCopyright.AutoSize = $false
+    $lblCopyright.Size = New-Object System.Drawing.Size(200, 50)
+    $lblCopyright.Location = New-Object System.Drawing.Point(880, 0)
+    $lblCopyright.TextAlign = "MiddleRight"
+    $panelFooter.Controls.Add($lblCopyright)
+
+    # Evento del botón de ayuda
+    $btnAyuda.Add_Click({
+        [System.Windows.Forms.MessageBox]::Show(
+            "Centro de Soporte - Iglesia Poblado`n`n📧 Email: juandsoftware@gmail.com`n📞 Teléfono: 350 567 4554`n¿Necesitas ayuda?`n• Gestión de inventario`n• Búsqueda de productos`n• • Configuración de cuenta`n`n¡Estamos aquí para ayudarte!",
+            "Centro de Soporte",
+            [System.Windows.Forms.MessageBoxButtons]::OK,
+            [System.Windows.Forms.MessageBoxIcon]::Information
+        )
     })
 
     # Mostrar el formulario
